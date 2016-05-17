@@ -1,0 +1,136 @@
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Functional High Ground
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/poole.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml">
+</head>
+
+
+  <body class="theme-base-08">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/colophon">Colophon</a>
+    <a class="sidebar-nav-item" href="/resume">Resume</a>
+    <a class="sidebar-nav-item" href="/projects">Projects</a>
+    <a class="sidebar-nav-item" href="/contact">Contact</a>
+    <span class="sidebar-nav-item">v3.0.1</span>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2015 Chris Finazzo.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Chris Finazzo</a>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Functional High Ground</h1>
+  <span class="post-date">05 Jan 2015</span>
+  <p>I don’t think the situation is as dire for users as <a href="http://www.marco.org/2015/01/04/apple-lost-functional-high-ground">Marco</a> makes it out to be, but I do agree that Apple should slow down. “It just works” was a great tagline, but if your products don’t live up to this ideal, it’s maddening.</p>
+
+<p>Does all of this sound vaguely familiar? It should. Apple made similar pitches to developers during the run-up to Mac OS X Snow Leopard. Hitting the “pause” button on new features allowed Apple to shore up everything that had been put in place over the last few releases and make sure it worked well. Low level features don’t come into existence in the span of a year.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+
+<p>It was a gamble, yes; but also (in retrospect) an easy sell. Like I said, we’ve been here before:</p>
+
+<blockquote>
+  <p>This was a risky strategy for Apple. After the rapid-fire updates of 10.1, 10.2, and 10.3 followed by the riot of new features and APIs in 10.4 and 10.5, could Apple really get away with calling a “time out?”</p>
+
+  <p><em>John Siracusa — Mac OS X 10.6 Snow Leopard: The Ars Technica review</em></p>
+</blockquote>
+
+<p>Well, we know how that <a href="http://cdn.arstechnica.net/20090828/no-new-features.wav">turned out</a>.</p>
+
+<p>Given all of the questions Apple has had to answer about their ability to continue to succeed with Tim Cook at the helm, I can think of no better way for the company to quiet the noise than to step back and publicly state their intentions. Apple has never put much stock into having the biggest marketshare and instead taken a <a href="http://en.wikipedia.org/wiki/Battle_of_Mobile_Bay#Damn_the_torpedoes">“Damn the torpedoes”</a> approach when it comes to the criticism<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> they receive for this stance.</p>
+
+<p>As <a href="http://www.caseyliss.com/2015/1/5/bravery">others</a> have said, there is reason to hope that things will work out. That this concern is little more than a bump in the road. Not a sign of impending disaster, but instead a clear sign that not all is well and something needs to change.</p>
+
+<p>Certainly, Apple is different now and not the company it once was, I just hold out hope that there are still a few <a href="https://www.youtube.com/watch?v=Rzu6zeLSWq8&amp;channel=EveryAppleAds">“Crazy Ones”</a> left at 1 Infinite Loop who know how to weather the storm.</p>
+
+<div class="footnotes">
+    
+<hr />
+    
+    <ol>
+        <li class="footnote" id="fn:1">
+            <p>Swift took 4 years. LLVM reached the 1.0 milestone in 2003.<a href="#fnref:1" title="return to article"> ↩</a></p>
+        </li>
+        
+        <li class="footnote" id="fn:2">
+            <p>In Apple's case, it might be, "Damn the investors and pundits!"<a href="#fnref:2" title="return to article"> ↩</a></p>
+        </li>
+    </ol>
+</div>
+
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>
