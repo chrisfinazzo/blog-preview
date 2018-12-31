@@ -1,6 +1,6 @@
 The MIT License
 
-Copyright &copy; 2018 Chris Finazzo
+Copyright &copy; 2019 Chris Finazzo
 
 Permission is hereby granted&#44; free of charge&#44; to any person obtaining a copy of this software and associated documentation files &#40;the &quot;Software&quot;&#41;&#44; to deal in the Software without restriction&#44; including without limitation the rights to use&#44; copy&#44; modify&#44; merge&#44; publish&#44; distribute&#44; sublicense&#44; and/or sell copies of the Software&#44; and to permit persons to whom the Software is furnished to do so, subject to the following conditions&#58;
 
