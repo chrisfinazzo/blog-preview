@@ -1,56 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
+  <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-<script src="https://use.fontawesome.com/d697def459.js"></script>
-<link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Source+Sans+Pro:400/Source+Serif+Pro:400,700/Merriweather:700">
-<link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
-<meta content="Chris Finazzo" name="apple-mobile-web-app-title" />
-<meta content="Chris Finazzo" name="application-name" />
-<meta property="og:url" content="" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="Functional High Ground" />
-<meta property="og:description" content="" />
-<meta property="twitter:card" content="summary" />
-<meta property="twitter:site" content="@chrisfinazzocom" />
-<meta property="twitter:creator" content="@chrisfinazzo" />
-<meta property="twitter:title" content="Functional High Ground" />
-<meta property="twitter:description" content="" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="shortcut icon" href="/favicon.ico">
-<link rel="stylesheet" type="text/css" href="cf.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <title>Chris Finazzo - Comms guy, Library nerd, Web geek after dark</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
-<header class="banner">
-  <a href="/"><h1>Chris Finazzo</h1></a>
-</header>
-<nav>
-  <ul>
-    <li><a href="/colophon">Colophon</a></li>
-    <li><a href="https://chrisfinazzo.github.io">RJP</a></li>
-    <li><a href="/projects">Projects</a></li>
-    <li><a href="/contact">Contact</a></li>
-  </ul> 
-  <div class="handle">Menu</div>
-  </nav>
-<script>
-        $('.handle').on('click', function() {
-            $('nav ul').toggleClass('show');
-        });
-</script>
-<div class="grid">
-<header><h1>{{ page.title }}</h1></header>
-<aside>{% include post-data.html %}</aside>
-<article><p>{{ content }}</p></article>
+ <div class="wrapper">
+<header id="banner">
+<div id="nameplate">
+<h2 id="name"><a href="#">Chris Finazzo</a></h2>
+<p id="description">Comms guy, Library nerd, Web geek after dark</p>
 </div>
-<ul class="social">
-  <li><a href="https://github.com/chrisfinazzo/"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a></li>
-  <li><a href="https://linkedin.com/in/chrisfinazzo/"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a></li>
-  <li><a href="https://twitter.com/chrisfinazzo"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a></li>
+<nav id="toc">
+<ul id="menu">
+<li class="menu-item"><a href="#">About</a></li>
+<li class="menu-item"><a href="#">Contact</a></li>
+<li class="menu-item"><a href="#">Archives</a></li>
+<li class="menu-item"><a href="#">Subscribe</a></li>
 </ul>
-<div class="rights">&copy; 2020 Chris Finazzo.</div>
+</nav>
+</header>
+
+    <div class="content">
+        <h2 id="title">{{ post.title }}</h2>
+        <p>#DOCUMENT_CONTENT#</p>
+    </div>
+
+    <div class="aside">
+    <h4 id="date">{{ post.date }}</h4>
+    <p id="tags">{{ post.tags }}<p>
+    </div>
+
+</div>  
+  <ul id="social">
+  <li><a rel="me" href="https://github.com/chrisfinazzo/"><i class="fab fa-github fa-2x"></i></a></li>
+  <li><a rel="me" href="https://linkedin.com/in/chrisfinazzo/"><i class="fab fa-linkedin fa-2x"></i></a></li>
+  <li><a rel="me" href="https://twitter.com/chrisfinazzo"><i class="fab fa-twitter fa-2x"></i></a></li>
+  <div id="rights">&copy; 2020 Chris Finazzo</div>
+  </ul>
 </body>
 </html>
