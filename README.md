@@ -1,3 +1,3 @@
 ## Blog Preview
 
-BBEdit templates, CSS files, and preview filters for my sites
+BBEdit templates, CSS files, and filters for my sites
