@@ -1,0 +1,99 @@
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  line-height: 1.5em;
+  font-family: "Garamond Premier Pro", Times, serif;
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  font-size: 2em;
+  /* Sets the line height to 2 units of vertical rhythm */
+  line-height: 1.5em; /* 3rem / 2em = 1.5em */
+  /* Sets 1 unit of vertical rhythm on the top and bottom margins. */
+  margin-top: 0.75em; /* 1.5rem / 2em = .75em */
+  margin-bottom: 0.75em;
+}
+
+h2 {
+  font-size: 1.5em;
+  line-height: 2em; /* 3rem / 1.5em = 2em */
+  margin-top: 1em; /* 1.5rem / 1.5em = 1em */
+  margin-bottom: 1em;
+}
+
+h3 {
+  font-size: 1.17em;
+  line-height: 1.282em; /* 1.5rem / 1.17em = 1.282em */
+  margin-top: 1.282em;
+  margin-bottom: 1.282em;
+}
+
+h4 {
+  font-size: 1em;
+  line-height: 1.5em; /* 1.5rem / 1em = 1.5em */
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+h5 {
+  font-size: 0.83em;
+  line-height: 1.807em; /* 1.5rem / 0.83em = 1.807em */
+  margin-top: 1.807em;
+  margin-bottom: 1.807em;
+}
+
+h6 {
+  font-size: 0.75em;
+  line-height: 2em; /* 1.5rem / .75em = 2em */
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+p, pre {
+  /* Sets 1 unit of vertical rhythm on the top and bottom margin. */
+  margin: 1.5em 0;
+}
+
+pre,
+code,
+kbd,
+samp,
+tt,
+var {
+  line-height: 1.5em;
+}
+
+ul {
+  margin-left: 0;
+  padding-left: 1em;
+}
+
+ol {
+  margin-left: 0;
+  padding-left: 1.5em;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin: 0;
+  padding: 0 0 0.5em 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+th, td {
+  padding: 0 0 0 1.5em;
+}
+
+th:first-child, td:first-child {
+  padding-left: 0;
+}
