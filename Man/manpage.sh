@@ -57,24 +57,9 @@ if [ -s "$TEMP_HTML" ]; then
     cat << 'EOF'
 <html>
 <head>
-    <style>
-        body {
-            font-family: monospace;
-            max-width: 80ch;
-            margin: 2em auto;
-            padding: 1em;
-            line-height: 1.4;
-            background-color: #f8f8f8;
-        }
-        h1 { border-bottom: 2px solid #333; }
-        h2 { border-bottom: 1px solid #666; margin-top: 2em; }
-        .man-page { background: white; padding: 2em; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        pre { background: #f0f0f0; padding: 1em; border-radius: 4px; overflow-x: auto; }
-        code { background: #f0f0f0; padding: 0.2em 0.4em; border-radius: 2px; }
-    </style>
 </head>
 <body>
-    <div class="man-page">
+    <div>
 EOF
     
     # Extract the body content from the generated HTML
