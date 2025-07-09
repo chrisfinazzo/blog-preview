@@ -1,18 +1,21 @@
 #!/bin/bash
-
 # BBEdit Preview Filter for Markdown Manpages
 # Converts Markdown to formatted manpage using Pandoc
-# Displays properly formatted output in Terminal
+# Displays properly formatted output using external template files
+
+# Path to template files (relative to script location)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TEMPLATE_HTML="$SCRIPT_DIR/man.html"
 
 # Check if pandoc is available
 if ! command -v pandoc &> /dev/null; then
-    echo "<html><body><h1>Error</h1><p>Pandoc is not installed or not in PATH.</p><p>Please install pandoc to use this filter.</p></body></html>"
+    echo "<html><body><div class='error'><h1>Error</h1><p>Pandoc is not installed or not in PATH.</p><p>Please install pandoc to use this filter.</p></div></body></html>"
     exit 1
 fi
 
 # Check if man command is available
 if ! command -v man &> /dev/null; then
-    echo "<html><body><h1>Error</h1><p>man command is not available.</p></body></html>"
+    echo "<html><body><div class='error'><h1>Error</h1><p>man command is not available.</p></div></body></html>"
     exit 1
 fi
 
@@ -33,7 +36,11 @@ cat > "$TEMP_MD"
 
 # Convert Markdown to man page format using pandoc
 if ! pandoc -s -f markdown -t man "$TEMP_MD" -o "$TEMP_ROFF" 2>/dev/null; then
-    echo "<html><body><h1>Error</h1><p>Failed to convert Markdown to man page format.</p><p>Please check your Markdown syntax and pandoc installation.</p></body></html>"
+    if [ -f "$TEMPLATE_HTML" ]; then
+        sed 's|<!-- Manpage content will be inserted here -->|<div class="error"><h1>Error</h1><p>Failed to convert Markdown to man page format.</p><p>Please check your Markdown syntax and pandoc installation.</p></div>|' "$TEMPLATE_HTML"
+    else
+        echo "<html><body><div class='error'><h1>Error</h1><p>Failed to convert Markdown to man page format.</p><p>Please check your Markdown syntax and pandoc installation.</p></div></body></html>"
+    fi
     exit 1
 fi
 
@@ -42,41 +49,81 @@ if ! man -Thtml "$TEMP_ROFF" > "$TEMP_HTML" 2>/dev/null; then
     # Fallback: try using groff directly
     if command -v groff &> /dev/null; then
         if ! groff -mandoc -Thtml "$TEMP_ROFF" > "$TEMP_HTML" 2>/dev/null; then
-            echo "<html><body><h1>Error</h1><p>Failed to format man page for display.</p></body></html>"
+            if [ -f "$TEMPLATE_HTML" ]; then
+                sed 's|<!-- Manpage content will be inserted here -->|<div class="error"><h1>Error</h1><p>Failed to format man page for display.</p></div>|' "$TEMPLATE_HTML"
+            else
+                echo "<html><body><div class='error'><h1>Error</h1><p>Failed to format man page for display.</p></div></body></html>"
+            fi
             exit 1
         fi
     else
-        echo "<html><body><h1>Error</h1><p>Neither man nor groff is available for HTML formatting.</p></body></html>"
+        if [ -f "$TEMPLATE_HTML" ]; then
+            sed 's|<!-- Manpage content will be inserted here -->|<div class="error"><h1>Error</h1><p>Neither man nor groff is available for HTML formatting.</p></div>|' "$TEMPLATE_HTML"
+        else
+            echo "<html><body><div class='error'><h1>Error</h1><p>Neither man nor groff is available for HTML formatting.</p></div></body></html>"
+        fi
         exit 1
     fi
 fi
 
-# If HTML conversion worked, display it
+# Function to escape special characters for sed
+escape_for_sed() {
+    printf '%s\n' "$1" | sed "s/[[\.*^$()+?{|]/\\&/g"
+}
+
+# If HTML conversion worked, display it using template
 if [ -s "$TEMP_HTML" ]; then
-    # Add some basic styling to make it look better
-    cat << 'EOF'
-<html>
+    # Extract the body content from the generated HTML
+    CONTENT=$(sed -n '/<body>/,/<\/body>/p' "$TEMP_HTML" | sed '1d;$d')
+    
+    if [ -f "$TEMPLATE_HTML" ]; then
+        # Use template file and replace placeholder with content
+        ESCAPED_CONTENT=$(escape_for_sed "$CONTENT")
+        sed "s|<!-- Manpage content will be inserted here -->|$ESCAPED_CONTENT|" "$TEMPLATE_HTML"
+    else
+        # Fallback: create basic HTML structure
+        cat << 'EOF'
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Man Page Preview</title>
+    <style>
+        body {
+            font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.4;
+            color: #000;
+            background-color: #fff;
+            padding: 20px;
+        }
+        .manpage-container {
+            max-width: 80ch;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div>
+    <div class="manpage-container">
 EOF
-    
-    # Extract the body content from the generated HTML
-    sed -n '/<body>/,/<\/body>/p' "$TEMP_HTML" | sed '1d;$d'
-    
-    cat << 'EOF'
+        echo "$CONTENT"
+        cat << 'EOF'
     </div>
 </body>
 </html>
 EOF
+    fi
 else
     # Fallback: create a simple HTML display of the roff source
-    echo "<html><head><title>Man Page Preview</title></head><body>"
-    echo "<h1>Man Page Preview</h1>"
-    echo "<pre>"
-    # Escape HTML characters in the roff output
-    sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g' "$TEMP_ROFF"
-    echo "</pre>"
-    echo "</body></html>"
+    ROFF_CONTENT=$(sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g' "$TEMP_ROFF")
+    FALLBACK_CONTENT="<h1>Man Page Preview</h1><pre>$ROFF_CONTENT</pre>"
+    
+    if [ -f "$TEMPLATE_HTML" ]; then
+        ESCAPED_FALLBACK=$(escape_for_sed "$FALLBACK_CONTENT")
+        sed "s|<!-- Manpage content will be inserted here -->|$ESCAPED_FALLBACK|" "$TEMPLATE_HTML"
+    else
+        echo "<html><head><title>Man Page Preview</title></head><body><div class='manpage-container'>$FALLBACK_CONTENT</div></body></html>"
+    fi
 fi
